@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibraryManagementSystem</title>
+    <link rel="stylesheet" href="css/style.css">    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   
+   
+</head>
+<body>
+
+  <nav class="navbar container-fluid  navbar-expand-lg sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-2" href="index.html">
+        LIBRARY 
+      </a>
+      <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+        >
+          <span class="navbar-toggler"> <i class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="users.html"> USERS </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="getBooks.html">BOOKS</a>
+          </li>
+          <li class="nav-item"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <a class="nav-link"> <i class="fa fa-bars " aria-hidden="true"></i></a>
+          
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+      
+
+      
+<div class="container-fluid">
+
+  <div class="form-box">
+  
+    <h3 class="text-center mt-0">Renewal Details  </h3>
+  
+  
+    <form action="" method="post">
+
+      <div class="form-group">
+        <label for="name">Iusse ID</label>
+        <input class="form-control" type="number" name="issueId"  id="isid"value="" readonly >
+      </div>
+
+        <div class="form-group">
+            <label for="bookid">BookId</l abel>
+            <input class="form-control"  type="number" id="rbookId"  value="" readonly >
+          </div>
+  
+      <div class="form-group">
+        <label for="bookid">User ID</label>
+        <input class="form-control"  type="number" name="userID"  value="" readonly >
+      </div>
+      <div class="form-group">
+              <label >Issue Date</label>
+              <input class="form-control"  type="date" name="issueDate"  value="" readonly>
+        </div>
+  
+       <div class="form-group">
+          <label >Return Date</label>
+          <input class="form-control"  type="date" name="returnDate"  value="" readonly>
+       </div>
+  
+        <div class="col-12 text-center m-3">
+           <button type="submit" class="custom-btn btn ">Submit </button>
+         </div>
+      </div>
+    </form>
+  </div>
+  
+  </div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  
+    <button type="button" class="btn-close text-reset m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+    <h3 class="text-center"> Menu</h3>
+  
+  <div class="offcanvas-body">
+
+
+
+    <div class="bg-light m-2 p-2">
+      <a href="getBooks.html">
+        Books
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="bg-light m-2 p-2">
+      <a href="users.html">
+      Users
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+
+    <div class="bg-light m-2 p-2">
+      <a href="issueBookDetails.html">
+        View  Issued Books 
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="bg-light m-2 p-2">
+      <a href="issueBook.html">
+        Book Issue Form
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="bg-light m-2 p-2">
+      <a href="highlights.html">
+        Highest Lent Book
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="bg-light m-2 p-2">
+      <a href="createBook.html">
+        Create New Book
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      </a>
+    </div>
+
+   
+
+  </div>
+</div>
+ 
+      
+ 
+        <div id="toast" >
+            <div id="img">Icon</div><div id="desc">
+                 A notification message..</div></div>
+ 
+ 
+ 
+        <button onclick="launch_toast()">Show Toast</button>
+
+        <script src="js/index.js"></script>
+        <script src="js/renewBook.js"></script>
+
+ 
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+ 
+ 
+</body>
+</html>
