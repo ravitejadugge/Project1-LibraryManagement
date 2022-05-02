@@ -27,8 +27,31 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @Column(name = "dob")
     private Date dob;
+    @Column(name = "email")
+    private String email;
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    @Column(name = "created_at")
+    private Date createAt;
+
     @Column(name = "image")
     private String image;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
 
     public int getId() {
         return id;
@@ -104,6 +127,9 @@ public class User {
                 ", address='" + address + '\'' +
                 ", gender='" + gender + '\'' +
                 ", dob=" + dob +
+                ", email='" + email + '\'' +
+                ", createAt=" + createAt +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

@@ -8,7 +8,6 @@ const getUserHighest = async () => {
         .then(res => res.json())
         .then(data => {
             // cardPrinting(data);
-            console.log(data);
             data.map((element) => {
                 const card = document.createElement('div');
                 card.classList = 'card';
@@ -25,7 +24,7 @@ const getUserHighest = async () => {
                     <span class="higest text-center">Highest</span>
 
                     <div class="container-fluid ">
-                    <h6> Username : <b>   ${element.userId}   </b>   </h6>
+                    <h6> UserId : <b>   ${element.userId}   </b>   </h6>
                     
                         <h6> Username : <b>    ${element.username}    </b>   </h6>
                         <h6>  Gender  : <b>    ${element.gender}       </b> </h6>
@@ -84,7 +83,6 @@ const getBookHighestLent = async () => {
        `;
                 container.innerHTML += content;
             });
-            console.log(data);
         })
 
 

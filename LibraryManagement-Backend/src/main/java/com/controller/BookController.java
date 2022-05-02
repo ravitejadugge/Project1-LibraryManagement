@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 
 @RestController
@@ -28,7 +29,10 @@ public class BookController {
 
     @PostMapping("/create")
     public Book createBook(@RequestBody Book book) {
+        Random random = new Random();
+        int number = random.nextInt(999999);
         book.setStock(1);
+        book.setBookId(number);
         bookService.createBook(book);
         return book;
     }
@@ -47,8 +51,12 @@ public class BookController {
 
     @DeleteMapping("delete/{id}")
     public Book deleteBook(@PathVariable("id") int bookId){
-        System.out.println(bookId);
         return bookService.deleteBook(bookId);
+    }
+
+    @DeleteMapping("deleteuser/{id}")
+    public User deleteUserById(@PathVariable("id") int id){
+        return bookService.deleteUserById(id);
     }
 
     @RequestMapping("/getUser")
@@ -82,5 +90,18 @@ public class BookController {
         return  bookService.categoryWiseBooks();
     }
 
+    @PostMapping("/createUser")
+    public User createUser(@RequestBody User user) {
+
+        Random random = new Random();
+        int number = random.nextInt(999999);
+        user.setUserId(number);
+
+        if(user.getImage()==null){
+            user.setImage("https://picsum.photos/225");
+        }
+
+        return bookService.createUser(user);
+    }
 
 }

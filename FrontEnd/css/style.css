@@ -26,19 +26,15 @@
     font-style:italic;
    }
 
-
      .custom-btn {
-       margin-top: 10px;
-       background: linear-gradient(90deg,#b1d7a0,#6ca885)!important;
+       background: linear-gradient(90deg,#6e8577,#6d927d)!important;
        width: 100px;
        height: 40px;
-       line-height: 42px;
        padding: 0;
        border: none;
        }
        .custom-btn-2 {
-        margin-top: 10px;
-        background: linear-gradient(90deg,#ff99eb,#743f76)!important;
+        background: linear-gradient(90deg,#947c60,#b09669)!important;
         width: 100px;
         height: 40px;
         margin-right: 10px;
@@ -49,8 +45,8 @@
 
 
 
-   .custom-btn:hover {
-       background: linear-gradient(90deg,rgb(144, 125, 210),#76cda1)!important;
+   .custom-btn:hover , .custom-btn-2:hover  {
+       background: linear-gradient(90deg,#907dd2,#907dd2)!important;
        color: aliceblue;
     }
 
@@ -247,7 +243,7 @@
 
 
 
-    /* radio buttons  returnBook*/
+    /* radio buttons  return*/
 
     .wrapper{
         display: inline-flex;
@@ -318,16 +314,6 @@
 
 
 
-
-
-  .btn-close {
-    background-color:#4286f4 !important;
-    border-radius: 50% !important;
-    border: 2px solid rebeccapurple !important;
-  }
-
-
-
   .higest {
     width: 110px;
     position: absolute;
@@ -355,7 +341,6 @@
   align-content: center!important;
   font-style: oblique !important;
   text-align: center !important;
-  padding-bottom: 10px !important;
 }
 
 
@@ -405,11 +390,28 @@
 }
 
 .fa-trash {
-  color: rgb(161, 53, 53);
-  width: 25px;
-  height: 25px;
+  color: rgb(126, 70, 70);
+  width: 30px !important;
+  height: 30px !important;
   cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+  padding-top: 6px;
+  background-color: #f4a395;
 }
+
+.trash-user {
+  color: rgb(10, 7, 4);
+  width: 30px !important;
+  height: 30px !important;
+  cursor: pointer;
+  border-radius: 50px;
+  text-align: center;
+  padding-top: 6px;
+  background-color: #c47c7c;
+
+}
+
 
 .fa-bars {
   cursor: pointer;
@@ -428,14 +430,12 @@ a {
 }
 
 .cardprint{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-radius:  15px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  width: 250px;
   background-color: white;
 }
+
+
 
 .cardprint img{
   width: 100px;
@@ -443,8 +443,8 @@ a {
   border-radius: 50%;
   background-image: linear-gradient(60deg, #a1e3d3, #a1e3d3);
   padding: 4px;
-  /* margin-top: -45px; */
   margin-top: 10px;
+  margin: auto;
 }
 
 .cardprint h2{
@@ -488,6 +488,39 @@ a {
 
 
 
-.fa-money , .fa-users ,.fa-compass ,.fa-book {
-  color: #e9ebf3;
+.fa-money , .fa-users ,.fa-compass ,.fa-book ,.reader-outline , .fa-exchange , .fa-leanpub , .fa-line-chart {
+  color : #090a5c;
 }
+
+
+
+
+
+
+.input-grey-rounded{
+  font-size: 16px;
+  line-height: 1.5;
+  background: #E9EEF0;
+  border: 1px solid #D5D9DB;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='%238C92A0' d='M11.44 10.73l4.41 4.42a.5.5 0 1 1-.7.7l-4.42-4.41a6.5 6.5 0 1 1 .7-.7v-.01zM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z'></path></svg>");
+  background-repeat: no-repeat;
+  background-position: 15px 16px;
+  border-radius: 100px;
+  } 
+  
+  .input-grey-rounded::placeholder{
+    color: #838D99;
+  }
+  
+  .input-grey-rounded:focus {
+    outline: none;
+    background-color: #FFF;
+    border: 1px solid #84A2FA;
+  }
+  
+
+
+
+  .imp-mark {
+    color: red;
+  }

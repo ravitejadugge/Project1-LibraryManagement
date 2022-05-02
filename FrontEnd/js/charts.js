@@ -33,7 +33,6 @@
     .then(res => res.json())
     .then(data => {
 
-        console.log(data);
       for (var i = 0; i < data.length; i++) {
           for (var j = 0; j < data.length; j++) {
               if(j==0){

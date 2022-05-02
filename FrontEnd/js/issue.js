@@ -1,7 +1,7 @@
 
 document.getElementById("issueDate").valueAsDate = new Date();
 
-const issueBookFormHandle = async () => {
+const issueFormHandle = async () => {
 
   let bookId = document.getElementById('bookId').value;
   let userId = document.getElementById('userId').value;

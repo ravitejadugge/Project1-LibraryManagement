@@ -3,7 +3,6 @@ const returnBook = async (sid) => {
   await fetch(`http://localhost:8080/LibraryManagement/bookIssue/${sid}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       return getfun2(data)
     })
 
@@ -15,7 +14,6 @@ const getfun2 = async (data) => {
 
 
   data.map(i => {
-    console.log(i.bookId);
 
     document.getElementById("ID2").value = i.id;
     document.getElementById("issueId2").value = i.issueId;
@@ -46,7 +44,6 @@ const getfun2 = async (data) => {
 
       var result = returnDate.setDate(returnDate.getDate() + numberOfDaysToAdd);
 
-      console.log(new Date(result))
       document.getElementById("returnDate").valueAsDate = new Date(result)
     }
   })
@@ -61,7 +58,7 @@ const getfun2 = async (data) => {
 
 
 
-const returnBookFine = async () => {
+const returnFine = async () => {
 
   let id = document.getElementById("ID2").value;
   let userId = document.getElementById('userId2').value;
@@ -105,6 +102,7 @@ const returnBookFine = async () => {
     }).then(response => response.json())
       .then(data => {
         launch_toast("success", "Successfully Returned book ");
+        getissued();
       });
   } catch (error) {
     launch_toast("fail", error);

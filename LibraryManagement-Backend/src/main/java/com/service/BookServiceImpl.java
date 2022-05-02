@@ -23,7 +23,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBooks() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<Book> bookList = session.createQuery("from Book", Book.class).list();
+        List<Book> bookList = session.createQuery("from Book ORDER BY id  DESC", Book.class).list();
         transaction.commit();
         session.close();
         return bookList;
@@ -33,7 +33,7 @@ public class BookServiceImpl implements BookService {
     public List<User> getUsers() {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<User> userList = session.createQuery("from User", User.class).list();
+        List<User> userList = session.createQuery("from User ORDER BY  id DESC", User.class).list();
         transaction.commit();
         session.close();
         return userList;
@@ -116,6 +116,17 @@ public class BookServiceImpl implements BookService {
         return book;
     }
 
+    @Override
+    public User deleteUserById(int id) {
+        Session session= sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = session.get(User.class,id);
+        session.delete(user);
+        transaction.commit();
+        session.close();
+        return user;
+    }
+
 
     @Override
     public int lastAddedBooks() {
@@ -154,5 +165,15 @@ public class BookServiceImpl implements BookService {
         transaction.commit();
         session.close();
         return bookList;
+    }
+
+    @Override
+    public User createUser(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(user);
+        transaction.commit();
+        session.close();
+        return user;
     }
 }

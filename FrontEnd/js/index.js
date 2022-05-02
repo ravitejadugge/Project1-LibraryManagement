@@ -1,19 +1,33 @@
 
 
-const createBook = async (e) => {
+const newbook = async (e) => {
   // let bookId = document.getElementById('bookId').value;
+  
   let bookName = document.getElementById('bookName').value;
   let author = document.getElementById('author').value;
   let category = document.getElementById('category').value;
   let shelfNumber = document.getElementById('shelfNumber').value;
 
-  if ( !bookName || !author || !category || !shelfNumber) {
-    return launch_toast("fail", "enter all details");
+  if ( !bookName) {
+    document.getElementById('bookName').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "Book Name Cannot be null");
+  }
+  if(  !author) {
+    document.getElementById('author').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "Author  Cannot be null");
+  } 
+  if( !category) {
+    document.getElementById('category').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "category Cannot be null");
+  }
+  if( !shelfNumber) {
+    document.getElementById('shelfNumber').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "shelfNumber Cannot be null");
+
   }
 
-  let bookId = Math.random().toString().substring(2,8);
+
   let data = {
-    bookId: bookId,
     bookName: bookName,
     author: author,
     category: category,
@@ -33,25 +47,23 @@ const createBook = async (e) => {
       body: JSON.stringify(data)
     }).then(response => response.json())
       .then(data => {
-        launch_toast("success", "Successfully Added new Book with Book ID " + data.bookId);
+        if(data) {
+          booksData();
+        }
+         launch_toast("success", "Successfully Added new Book with Book ID " + data.bookId);
       });
 
   } catch (error) {
     launch_toast("fail", error)
   }
 
-
-  document.getElementById('bookId').value = "";
+  
   document.getElementById('bookName').value = "";
   document.getElementById('author').value = "";
   document.getElementById('category').value = "";
   document.getElementById('shelfNumber').value = "";
 
-
 }
-
-
-
 
 
 
@@ -69,7 +81,7 @@ const launch_toast = (status, msg) => {
   else if (status === "fail") {
     x.style.backgroundColor = "red";
     img.style.backgroundColor = "red";
-    img.innerHTML = ` <i class="fa fa-window-close fa-2x mb-4" aria-hidden="true"></i>`;
+    img.innerHTML = ` <i class="fa fa-times fa-2x mb-4" aria-hidden="true"></i>`;
     x.appendChild(img);
   } else {
     x.style.backgroundColor = "yellow";
@@ -100,7 +112,6 @@ const totalBooks = async ()=>{
   .then(response => response.json())
   .then(data => {
     document.getElementById("totalBooks").innerHTML = data;
-    console.log(data);
   });
   totalMembers();
   totalFineCollected();
@@ -112,7 +123,6 @@ const totalMembers =async ()=>{
   .then(response => response.json())
   .then(data => {
     document.getElementById("totalUsers").innerHTML = data;
-    console.log(data);
   });
 
   
@@ -123,7 +133,6 @@ const totalBooksIssuedToday =async ()=>{
   .then(response => response.json())
   .then(data => {
     document.getElementById("bookissuedtoday").innerHTML = data;
-    console.log(data);
   });
   
 }
@@ -133,10 +142,42 @@ const totalFineCollected = async()=>{
   .then(response => response.json())
   .then(data => {
     document.getElementById("totalfine").innerHTML = "₹ "+ data+".0";
-    console.log(data);
   });
   
 }
 
 
 
+const booksData = async () => {
+  let books;
+  await fetch("http://localhost:8080/LibraryManagement/get")
+    .then(response => response.json())
+    .then(data => {
+      books = data;
+    });
+  if (books) {
+    tdBody.innerHTML = "";
+    cardPrinting2(books);
+  }
+}
+
+
+let cardPrinting2 = (books) => {
+  books.map((element,index) => {
+  
+let content = `
+              <tr  scope="row"> 
+              <td > ${index+1}   </td>
+              <td > ${element.bookId}   </td>
+              <td > ${element.bookName}   </td>
+              <td > ${element.author}   </td>
+              <td > ${element.category}   </td>
+              <td > ${element.shelfNumber}   </td>
+              <td >   <i class="fa fa-trash" aria-hidden="true" onclick="deleteBook(${element.id})"></i>
+              </tr>
+
+`
+    tdBody.innerHTML += content;
+
+  });
+}

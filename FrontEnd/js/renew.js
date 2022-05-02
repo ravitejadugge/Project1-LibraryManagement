@@ -2,11 +2,9 @@
 
 const renewBook = async (id) => {
 
-  console.log(id);
   await fetch(`http://localhost:8080/LibraryManagement/bookIssue/${id}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       return getfun(data)
     })
 
@@ -18,7 +16,6 @@ let bookId = document.getElementById("issueId");
 
 const getfun = async (data) => {
   data.map(i => {
-    console.log(i.bookId);
 
     document.getElementById("ID").value = i.id;
     document.getElementById("issueId").value = i.issueId;
@@ -29,7 +26,7 @@ const getfun = async (data) => {
 
     if (i.returnDate) {
       var numberOfDaysToAdd = 15;
-      let returnDate = new Date(i.returnDate);
+      let returnDate = new Date();
       var result = returnDate.setDate(returnDate.getDate() + numberOfDaysToAdd);
       document.getElementById("returnDate").valueAsDate = new Date(result)
     }
