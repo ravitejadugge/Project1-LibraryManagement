@@ -106,7 +106,7 @@ public class BookIssueServiceImpl implements BookIssueService {
                  "COUNT(issue_date) counter\n" +
                  "FROM issuedBook \n" +
                  "WHERE  issue_date >= NOW() - INTERVAL 1 YEAR \n" +
-                 "GROUP BY month, LAST_DAY(issue_date)\n" +
+                 "GROUP BY month, LAST_DAY(issue_date)\n"   +
                  "ORDER BY LAST_DAY(issue_date); ");
          List<BookIssue> bookIssueList = query.list();
          transaction.commit();

@@ -8,7 +8,7 @@ const getUserData = async () =>{
     })
 }
 
-let container = document.getElementById("k");
+let container = document.getElementById("k");1
 const userCardPrinting = (data)=>{
     data.map(element=>{
         const card = document.createElement('div');
@@ -22,14 +22,20 @@ const userCardPrinting = (data)=>{
         <div class="card cardprint">
 
         <div class="float-end abc">
-        <i class="fa fa-trash   float-end trash-user mt-1 me-1" aria-hidden="true"  onclick="deleteUser(${element.id})" ></i>
+        
         </div>
 
-        <div class="row align-items-center">
-        <img src="${element.image}" alt="user Image" />
-        </div>
-        <div class="container text-center">
+        <div class="">
 
+
+        <div class="top-right"> <i class="fa fa-trash trash-user " aria-hidden="true"  onclick="deleteUser(${element.id})"  ></i>
+        </div>
+
+        <img src="${element.image}" alt="user Image"  class="card-img-top" />
+
+        </div>
+        <div class="container float-end">
+      
         <h3>${element.username}</h3>
         <div >
         <h6>  ${element.userId}</h6>
@@ -88,7 +94,7 @@ const addUser = async (e) => {
     
     if ( !membername) {
         document.getElementById('membername').style = 'border: 2px solid red !important';
-        return launch_toast("fail", "Member Name Cannot be null");
+        return launch_toast("fail", "Member Name is required");
       }
 
     if(membername.length <= 0 ){
@@ -159,11 +165,17 @@ const addUser = async (e) => {
   
   }
 
-
-
   const deleteUser = async (id)=>{
+      var myModal =  new bootstrap.Modal(document.getElementById('modalConform'))
 
-      try {
+      let but = document.createElement("button");
+      but.innerHTML = "Delete";
+      but.id = id;
+      but.className = "btn btn-danger"
+      // but.addEventListener("click", confirmDelete(id));
+      but.addEventListener("click", async function(){
+        console.log(id);
+        try {
         await fetch(`http://localhost:8080/LibraryManagement/deleteuser/${id}`, {
           method: 'DELETE',
           headers: {
@@ -183,7 +195,34 @@ const addUser = async (e) => {
       } catch (error) {
         launch_toast("fail", error)
       }
+      myModal.hide();
     
+
+      });
+
+
+
+      let but2 = document.createElement("button");
+      but2.innerHTML ="Cancel"
+      but2.id = id;
+      but2.className = "btn btn-info"
+      but2.addEventListener("click",function(){
+        myModal.hide();
+      })
+     
+      let container  =   document.getElementById('foot')
+      container.innerHTML = "";
+
+      container.appendChild(but2);
+      container.appendChild(but);
+
+
+      // but2.addEventListener("click",confirmDelete());
+
+      //container.appendChild(but2);
+    myModal.show()
+    
+
 
 
 

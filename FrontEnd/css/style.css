@@ -66,7 +66,7 @@
 
 
 
-   input {
+   input , select{
     width: 100%;
     border:none !important;
     padding:12px !important;
@@ -401,15 +401,14 @@
 }
 
 .trash-user {
-  color: rgb(10, 7, 4);
+  color: rgb(243, 102, 81);
   width: 30px !important;
   height: 30px !important;
   cursor: pointer;
   border-radius: 50px;
   text-align: center;
   padding-top: 6px;
-  background-color: #c47c7c;
-
+  background-color: #e6fdff;
 }
 
 
@@ -438,14 +437,13 @@ a {
 
 
 .cardprint img{
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-image: linear-gradient(60deg, #a1e3d3, #a1e3d3);
+  height: 150px;
   padding: 4px;
   margin-top: 10px;
   margin: auto;
 }
+
+
 
 .cardprint h2{
   margin: 10px 0;
@@ -465,23 +463,23 @@ a {
 
 
 .cardcol1 {
-  background:linear-gradient(60deg, #7ad4ce, #2acabf);
+  background:linear-gradient(60deg, #68cec5, #2acabf);
   height: 150px;
 }
 
 .cardcol2 {
-  background:linear-gradient(60deg, #e7ba76, #e7a440);
+  background:linear-gradient(60deg, #e7ba76, #e8a033);
   height: 150px;
 }
 
 .cardcol3 {
-  background:linear-gradient(60deg, #ff5b7e, #e2768e);
+  background:linear-gradient(60deg, #da667f, #e03168);
   height: 150px;
 }
 
 .cardcol4 {
 
-  background:linear-gradient(60deg,#5c94d8, #6365d4 );
+  background:linear-gradient(60deg,#5c94d8, #366cae );
    height: 150px;
 
 }
@@ -504,11 +502,12 @@ a {
   border: 1px solid #D5D9DB;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill='%238C92A0' d='M11.44 10.73l4.41 4.42a.5.5 0 1 1-.7.7l-4.42-4.41a6.5 6.5 0 1 1 .7-.7v-.01zM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z'></path></svg>");
   background-repeat: no-repeat;
-  background-position: 15px 16px;
+  background-position: 300px 16px;
   border-radius: 100px;
   } 
   
   .input-grey-rounded::placeholder{
+    padding-left: 30px;
     color: #838D99;
   }
   
@@ -524,3 +523,21 @@ a {
   .imp-mark {
     color: red;
   }
+
+
+
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+
+
+
+.menu-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

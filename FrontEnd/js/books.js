@@ -5,7 +5,6 @@ const getData = async () => {
     .then(response => response.json())
     .then(data => {
       if (data) {
-        console.log(data);
         tdBody.innerHTML = "";
         cardPrinting(data);
       }
@@ -73,6 +72,26 @@ let content = `
 
 const deleteBook = async(id)=> {
 
+  var myModal =  new bootstrap.Modal(document.getElementById('modalConform'))
+
+ 
+
+
+  let but2 = document.createElement("button");
+  but2.innerHTML ="Cancel"
+  but2.id = id;
+  but2.className = "btn btn-info"
+  but2.addEventListener("click",function(){
+    myModal.hide();
+  })
+
+  let but = document.createElement("button");
+  but.innerHTML = "Delete";
+  but.id = id;
+  but.className = "btn btn-danger"
+  but.addEventListener("click", async function(){
+    try {
+  
   await fetch(`http://localhost:8080/LibraryManagement/delete/${id}`,{
     method: 'DELETE',
     headers: {
@@ -85,11 +104,28 @@ const deleteBook = async(id)=> {
     .then(response => response.json())
     .then(data => {
       books = data;
+      getData();
     });
-  if (books) {
-    getData();
-  }
+
   launch_toast("fail", "Successfully deleted Book");
 
+  myModal.hide();
+} catch (error) {
+  launch_toast("fail", error);
+}
+
+  })
+
+ 
+  let container  =   document.getElementById('foot')
+  container.innerHTML = "";
+
+  container.appendChild(but2);
+  container.appendChild(but);
+
+    myModal.show()  
+
+
+ 
 
 }

@@ -11,12 +11,56 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+
+
+    <style>
+    
+        .icon-box {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto;
+          border-radius: 50%;
+          z-index: 9;
+          text-align: center;
+          border: 3px solid #f15e5e;
+      }
+  
+     .icon-box i {
+          color: #f15e5e;
+          font-size: 46px;
+          display: inline-block;
+          margin-top: 13px;
+      }
+  
+      .btn {
+          color: #fff;
+          border-radius: 2px;
+          background: #60c7c1;
+          text-decoration: none;
+          transition: all 0.4s;
+          line-height: normal;
+          min-width: 120px;
+          border: none;
+          min-height: 40px;
+          border-radius: 3px;
+          margin: 0 5px;
+      }
+      .btn-danger {
+          background: #f15e5e;
+      }
+  
+  
+    
+  </style>
+  
   </head>
   <body onload="getData()">
     <nav class="navbar container-fluid  navbar-expand-lg sticky-top">
@@ -24,64 +68,20 @@
         <a class="navbar-brand ms-2" href="index.html">
           LIBRARY 
         </a>
-        <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
-      >
-        <span class="navbar-toggler"> <i class="fa fa-bars" aria-hidden="true"></i></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav ms-auto mb-2 me-3 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="users.html"> USERS </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="books.html">BOOKS</a>
-            </li>
-            <li class="nav-item"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-              <a class="nav-link"> <i class="fa fa-bars " aria-hidden="true"></i></a>
-            
-            </li>
-          </ul>
-        </div>
+      <div class="nav-item"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+        <a class="nav-link"> <img src="images/dots-menu.png" alt="" class="  menu-button" >   </a>
+      </div>
+
       </div>
     </nav>
 
-    <!-- <div class="container-fluid">
-      <div class="row">
-        <div class="col-12 mx-auto d-flex">
-          <div class="col-md-3 mt-3 text-center mx-auto">
-            <div class="search">
-              <span class="fa fa-search"></span>
-              <input 
-              type="text"
-              onchange
-              onpropertychange
-              onkeyuponpaste
-              oninput="searchBookByName()"
-              class="form-control"
-              id="searchName"
-              name="id"
-              placeholder="Search...."
-    
-              >
-            </div>
-          </div>
-
-
-        </div>
-        </div>
-      </div>
-    </div>  -->
-
-
+ 
 
 
     <div class="d-flex justify-content-between container mt-3">
 
       <div class="col-4">
-        <input class="input-grey-rounded text-center" 
+        <input class="input-grey-rounded text-start" 
         type="text"
         onchange
         onpropertychange
@@ -90,7 +90,7 @@
         class="form-control"
         id="searchName"
         name="id"
-        placeholder="Search...."
+        placeholder="Search"
         >
       </div>
   
@@ -104,21 +104,12 @@
 
     
 
-
-
-
-
-<!-- Button trigger modal
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title mx-auto" id="exampleModalLabel"> Create New Book
+        <h5 class="modal-title ms-3" id="exampleModalLabel"> Create New Book
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -137,7 +128,7 @@
             </div> -->
           
                 <div class="form-group">
-                    <label for="bookid">BookName</label>
+                    <label for="bookid"> Name</label>
                     <input class="form-control "  type="text" id="bookName" name="bookName" required autofocus >
                   </div>
           
@@ -148,17 +139,31 @@
           
               <div class="form-group">
                       <label >Category</label>
-                      <input class="form-control"  type="text" name="category" id="category"  required >
+                      <!-- <input class="form-control"  type="text" name="category" id="category"  required > -->
+                      <select  id="category" class="form-select" name="category">
+                        <option value="Autobiography" >Autobiography</option>
+                        <option value="Horror">Horror</option>
+                        <option value="Science">Science</option>
+                        <option value="Science">Problems our society	</option>
+
+                      </select>
                 </div>
           
                 <div class="form-group">
-                       <label >ShelfNumber </label>
-                       <input class="form-control"  type="text" name="shelfNumber" id="shelfNumber" required >
+                       <label >Shelf Number </label>
+                       <!-- <input class="form-control"  type="text" name="shelfNumber" id="shelfNumber" required > -->
+                       <select  id="shelfNumber" class="form-select" name="category">
+                        <option value="RH100" >RH100</option>
+                        <option value="RH101">RH101</option>
+                        <option value="RH102">LT201</option>
+                        <option value="RH103">LT202	</option>
+
+                      </select>
                  </div>
           
           
                 <div class="col-12 text-center mt-2">
-                   <button type="button" class="custom-btn btn " onclick="newbook()" data-bs-dismiss="modal"  >Submit </button>
+                   <button type="button" class="custom-btn btn " onclick="newbook()" data-bs-dismiss="modal"  >Save </button>
                  </div>
               </div>
             </form>
@@ -192,10 +197,10 @@
           <tr>
             <th scope="col">S.No</th>
             <th scope="col">Book Id</th>
-            <th scope="col">BookName</th>
+            <th scope="col">Book Name</th>
             <th scope="col">Author</th>
             <th scope="col">Category</th>
-            <th scope="col">ShelfNumber</th>
+            <th scope="col">Shelf Number</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -268,6 +273,33 @@
 
     </div>
   </div>
+
+
+  <div class="modal fade" id="modalConform" tabindex="-1" aria-labelledby="modalConformLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="icon-box text-center align-content-center">
+            <i class="material-icons fa-2x">&#xE5CD;</i>
+        </div>
+          <p class="m-3 text-center">Are you sure you want to delete this Book?</p>
+        <div class="text-center mb-3" id="foot">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
   
 
 

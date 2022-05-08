@@ -10,19 +10,19 @@ const newbook = async (e) => {
 
   if ( !bookName) {
     document.getElementById('bookName').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "Book Name Cannot be null");
+    return launch_toast("fail", "Book Name is required");
   }
   if(  !author) {
     document.getElementById('author').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "Author  Cannot be null");
+    return launch_toast("fail", "Author is required ");
   } 
   if( !category) {
     document.getElementById('category').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "category Cannot be null");
+    return launch_toast("fail", "category is required");
   }
   if( !shelfNumber) {
     document.getElementById('shelfNumber').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "shelfNumber Cannot be null");
+    return launch_toast("fail", "shelfNumber is required ");
 
   }
 

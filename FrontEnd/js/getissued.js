@@ -25,6 +25,20 @@ let cardPrinting3 = async (booksIssueDeatils) => {
       element.actualReturnDate = " ";
     }
 
+
+
+    
+    const date1 = new Date(element.returnDate);
+    const today = new Date();
+
+    const diffTime = today - date1;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    let totalFine = 0;
+    if (diffDays > 0) {
+      totalFine = diffDays * 5;
+    }
+
     if (element.isReturned !== "YES") {
 
 
@@ -42,25 +56,24 @@ let cardPrinting3 = async (booksIssueDeatils) => {
 
              <div class="row btn-secondary rounded">
                 <div class="col-6"> 
-                  BookID : <b> ${element.bookId} </b>
+                  Book Id : <b> ${element.bookId} </b>
                 </div>
 
                 <div class="col-6">
-                 UserID:<b>  ${element.userId} </b> 
+                 User Id:<b>  ${element.userId} </b> 
                 </div>
              </div>
+
+            
           
-          <span>  IssueDate : <b>   ${element.issueDate}     </b></span>  </br>
-          <span> ReturnDate : <b>    ${element.returnDate}    </b>   </span></br>
-          <span> ActualReturnDate : <b> ${ element.actualReturnDate}    </b>   </span></br>
-          <span> Fine : <b> ${element.fine}   </b> </span>  </br>
+          <span>  Issue Date : <b>   ${element.issueDate}     </b></span>  </br>
+          <span> Return Date : <b>    ${element.returnDate}    </b>   </span></br>
+          <span> Actual Return Date : <b> ${ element.actualReturnDate}    </b>   </span></br>
+          <span> Fine : <b> ${totalFine}   </b> </span>  </br>
           <button onclick="renewBook(${element.issueId})" class="custom-btn btn mt-1" id='renewbtn2'>
           Renew
           </button>
           <button onclick="returnBook(${element.issueId})" class="custom-btn-2 btn mt-1" id='returnbtn'> Return </button>
-
-      
-
          </div>
        </div>
      </div>
