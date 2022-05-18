@@ -70,7 +70,6 @@ const getBookHighestLent = async () => {
 
        <div class="container-fluid ">
        <h6> BookId : <b>     ${element.bookId}    </b>   </h6>
-      
         <h6> BookName : <b>    ${element.bookName}    </b>   </h6>
         <h6>  Author  : <b>    ${element.author}       </b> </h6>
         <h6>  Category : <b>   ${element.category}     </b></h6> 

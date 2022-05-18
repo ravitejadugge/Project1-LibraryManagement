@@ -10,19 +10,17 @@ const renewBook = async (id) => {
 
 }
 
-let issueId = document.getElementById("issueId");
-let bookId = document.getElementById("issueId");
+// let issueId = document.getElementById("issueId");
+// let bookId = document.getElementById("issueId");
 
 
 const getfun = async (data) => {
   data.map(i => {
-
     document.getElementById("ID").value = i.id;
     document.getElementById("issueId").value = i.issueId;
     document.getElementById("userId").value = i.userId;
     document.getElementById("bookID1").value = i.bookId;
     document.getElementById("issueDate1").valueAsDate = new Date(i.issueDate);
-
 
     if (i.returnDate) {
       var numberOfDaysToAdd = 15;

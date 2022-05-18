@@ -8,6 +8,7 @@ const getissued = async () => {
   await fetch("http://localhost:8080/LibraryManagement/bookIssue")
     .then(response => response.json())
     .then(data => {
+
       container.innerHTML = "";
       cardPrinting3(data);
     });
@@ -17,10 +18,10 @@ let cardPrinting3 = async (booksIssueDeatils) => {
 
   booksIssueDeatils.map((element) => {
 
+
     const card = document.createElement('div');
     card.classList = 'card';
-    let btn1 = "";
-    let btn2 = "";
+    let renewButton = "";
     if(!element.actualReturnDate){
       element.actualReturnDate = " ";
     }
@@ -39,7 +40,15 @@ let cardPrinting3 = async (booksIssueDeatils) => {
       totalFine = diffDays * 5;
     }
 
-    if (element.isReturned !== "YES") {
+    if(totalFine > 0) {
+      renewButton = "";
+    } else {
+      renewButton = `<button onclick="renewBook(${element.issueId})" class="custom-btn btn mt-1" id='renewbtn2'>  Renew </button>`;
+    }
+
+    
+
+    // if (element.isReturned !== "YES") {
 
 
 
@@ -68,11 +77,9 @@ let cardPrinting3 = async (booksIssueDeatils) => {
           
           <span>  Issue Date : <b>   ${element.issueDate}     </b></span>  </br>
           <span> Return Date : <b>    ${element.returnDate}    </b>   </span></br>
-          <span> Actual Return Date : <b> ${ element.actualReturnDate}    </b>   </span></br>
           <span> Fine : <b> ${totalFine}   </b> </span>  </br>
-          <button onclick="renewBook(${element.issueId})" class="custom-btn btn mt-1" id='renewbtn2'>
-          Renew
-          </button>
+          ${renewButton}
+          
           <button onclick="returnBook(${element.issueId})" class="custom-btn-2 btn mt-1" id='returnbtn'> Return </button>
          </div>
        </div>
@@ -84,7 +91,7 @@ let cardPrinting3 = async (booksIssueDeatils) => {
   container.innerHTML += content;
     
       
-    }
+    // }
   
 
   });

@@ -48,7 +48,7 @@ const getfun2 = async (data) => {
     }
   })
 
-  var myModal = await new bootstrap.Modal(document.getElementById('exampleModal2'))
+  var myModal =  new bootstrap.Modal(document.getElementById('exampleModal2'))
   myModal.show()
 
 }

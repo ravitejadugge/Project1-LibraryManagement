@@ -96,7 +96,7 @@
   
       <div>
   
-        <button class="custom-btn btn" data-bs-toggle="modal" data-bs-target="#exampleModal"> Add Book</button>
+        <button class="custom-btn btn" data-bs-toggle="modal" data-bs-target="#newbookModal"> Add Book</button>
   
       </div>
   
@@ -105,11 +105,11 @@
     
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="newbookModal" tabindex="-1" aria-labelledby="newbookModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title ms-3" id="exampleModalLabel"> Create New Book
+        <h5 class="modal-title ms-3" id="newbookModalLabel"> Create New Book
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -120,7 +120,7 @@
           
           
           
-          <form class="row g-3" method="post" >
+          <form class="row g-3" method="post" needs-val >
         
             <!-- <div class="form-group">
               <label for="bookid">BookId</label>
@@ -129,7 +129,7 @@
           
                 <div class="form-group">
                     <label for="bookid"> Name</label>
-                    <input class="form-control "  type="text" id="bookName" name="bookName" required autofocus >
+                    <input class="form-control "  type="text" id="bookName" name="bookName"  >
                   </div>
           
               <div class="form-group">
@@ -139,39 +139,21 @@
           
               <div class="form-group">
                       <label >Category</label>
-                      <!-- <input class="form-control"  type="text" name="category" id="category"  required > -->
-                      <select  id="category" class="form-select" name="category">
-                        <option value="Autobiography" >Autobiography</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Science">Science</option>
-                        <option value="Science">Problems our society	</option>
-
+                      <select  id="dropdowncategory" class="form-select" name="category">
                       </select>
                 </div>
           
-                <div class="form-group">
-                       <label >Shelf Number </label>
-                       <!-- <input class="form-control"  type="text" name="shelfNumber" id="shelfNumber" required > -->
-                       <select  id="shelfNumber" class="form-select" name="category">
-                        <option value="RH100" >RH100</option>
-                        <option value="RH101">RH101</option>
-                        <option value="RH102">LT201</option>
-                        <option value="RH103">LT202	</option>
-
-                      </select>
-                 </div>
-          
           
                 <div class="col-12 text-center mt-2">
-                   <button type="button" class="custom-btn btn " onclick="newbook()" data-bs-dismiss="modal"  >Save </button>
+                   <button type="button" class="custom-btn btn " onclick="newbook()"   data-bs-dismiss="modal">Save </button>
                  </div>
+                </form>
               </div>
-            </form>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
@@ -201,10 +183,12 @@
             <th scope="col">Author</th>
             <th scope="col">Category</th>
             <th scope="col">Shelf Number</th>
-            <th scope="col">Action</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
-        <tbody id="tableDataContainer">
+        <tbody id="tableDataContainer" >
+
         </tbody> 
 
 
@@ -218,8 +202,8 @@
 
 
 
-
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+     <!-- navbar -->
+     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
   
       <button type="button" class="btn-close text-reset m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   
@@ -256,7 +240,14 @@
       <div class="bg-light m-2 p-2">
         <a href="issuebook.html">
           <i class="fa fa-leanpub" aria-hidden="true"></i>
-           Issue Book
+          Issue Book
+        </a>
+      </div>
+
+      <div class="bg-light m-2 p-2">
+        <a href="category.html">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i>
+          Add category
         </a>
       </div>
   
@@ -293,6 +284,52 @@
 
 
 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form class="row g-3" method="post" >
+          
+          <div class="form-group" style="display: none;">
+            <label for="Id"> Id</label>
+            <input class="form-control "  type="number"  id="updateId" name="Id" required >
+          </div>
+        
+          <div class="form-group" >
+            <label for="bookid">BookId</label>
+            <input class="form-control "  type="number"  id="updatebookId" name="bookId" readonly >
+          </div>
+        
+              <div class="form-group">
+                  <label for="Name"> Name</label>
+                  <input class="form-control "  type="text" id="updatebookName" name="bookName" required autofocus >
+                </div>
+        
+            <div class="form-group">
+              <label for="Author">Author</label>
+              <input class="form-control"  type="text" name="author" id="updateauthor" required >
+            </div>
+        
+            <div class="form-group">
+                    <label >Category</label>
+                    <select  id="updatedropdowncategory" class="form-select" name="category">
+                    
+                    </select>
+              </div>
+
+              </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="custom-btn-2 btn" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" onclick="updateBook()" data-bs-dismiss="modal" >Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

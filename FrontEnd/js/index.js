@@ -1,69 +1,5 @@
 
 
-const newbook = async (e) => {
-  // let bookId = document.getElementById('bookId').value;
-  
-  let bookName = document.getElementById('bookName').value;
-  let author = document.getElementById('author').value;
-  let category = document.getElementById('category').value;
-  let shelfNumber = document.getElementById('shelfNumber').value;
-
-  if ( !bookName) {
-    document.getElementById('bookName').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "Book Name is required");
-  }
-  if(  !author) {
-    document.getElementById('author').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "Author is required ");
-  } 
-  if( !category) {
-    document.getElementById('category').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "category is required");
-  }
-  if( !shelfNumber) {
-    document.getElementById('shelfNumber').style = 'border: 2px solid red !important';
-    return launch_toast("fail", "shelfNumber is required ");
-
-  }
-
-
-  let data = {
-    bookName: bookName,
-    author: author,
-    category: category,
-    shelfNumber: shelfNumber
-  };
-
-
-  try {
-    await fetch('http://localhost:8080/LibraryManagement/create', {
-      method: 'POST',
-      headers: {
-        'Access-Control-Allow-Origin': "*",
-        'mode': 'no-cors',
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => response.json())
-      .then(data => {
-        if(data) {
-          booksData();
-        }
-         launch_toast("success", "Successfully Added new Book with Book ID " + data.bookId);
-      });
-
-  } catch (error) {
-    launch_toast("fail", error)
-  }
-
-  
-  document.getElementById('bookName').value = "";
-  document.getElementById('author').value = "";
-  document.getElementById('category').value = "";
-  document.getElementById('shelfNumber').value = "";
-
-}
 
 
 
@@ -116,6 +52,7 @@ const totalBooks = async ()=>{
   totalMembers();
   totalFineCollected();
   totalBooksIssuedToday();
+
 }
 
 const totalMembers =async ()=>{
@@ -164,16 +101,24 @@ const booksData = async () => {
 
 let cardPrinting2 = (books) => {
   books.map((element,index) => {
+
+    let available = element[6];
+    let styleEle ="";
+
+    if(available===1){
+      styleEle =  "color:green;font-weight: 1000;";
+    }
   
 let content = `
               <tr  scope="row"> 
               <td > ${index+1}   </td>
-              <td > ${element.bookId}   </td>
-              <td > ${element.bookName}   </td>
-              <td > ${element.author}   </td>
-              <td > ${element.category}   </td>
-              <td > ${element.shelfNumber}   </td>
-              <td >   <i class="fa fa-trash" aria-hidden="true" onclick="deleteBook(${element.id})"></i>
+              <td > ${element[1]}   </td>
+              <td > ${element[2]}   </td>
+              <td > ${element[3]}   </td>
+              <td > ${element[4]}   </td>
+              <td > ${element[5]}   </td>
+              <td >   <i class="fa fa-edit text-center " aria-hidden="true" onclick="editBook(${element[1]})" ></i> </td>
+              <td >   <i class="fa fa-trash" aria-hidden="true" onclick="deleteBook(${element[0]})"></i>
               </tr>
 
 `
@@ -181,3 +126,6 @@ let content = `
 
   });
 }
+
+
+

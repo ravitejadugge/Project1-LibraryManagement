@@ -6,18 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LibraryManagementSystem</title>
     <link rel="stylesheet" href="css/style.css" />
+
     <link
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+
+  
   </head>
-  <body onload="getUserHighest()">
+  <body >
     <nav class="navbar container-fluid navbar-expand-lg sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand ms-2" href="index.html"> LIBRARY </a>
@@ -34,85 +42,160 @@
       </div>
     </nav>
 
-    <div id="toast">
-      <div id="img"></div>
-      <div id="desc"></div>
-    </div>
+    <div class="d-flex justify-content-between container mt-3">
+      
 
-    <!-- <script src="index.js"></script> -->
 
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-11 mx-auto mt-3 mb-5">
-          <div class="row gy-4" id="k"></div>
+      <div class="container-fluid" >
+
+    <div class="form-box">
+    <h3 class="text-center mt-0 btn-secondary p-2 rounded mt-1 mb-2" >Create Category </h3>
+    
+      <form  method="post">
+
+    
+
+            <div class="form-group">
+            <label for="name">Name </label>
+            <input class="form-control"  type="text"  id="name">
+            </div>
+
+
+         <div class="form-group mt-3">
+            <label for="shelf">Shelf Number</label>
+            <input class="form-control"  type="text" id="shelf" >
+         </div>
+
+         <div class="col-12 text-center mt-3">
+            <button type="button" class="custom-btn btn " onclick="addCategory()"  >Save </button>
+          </div>
         </div>
-      </div>
+      </form>
+      
+     </div>
     </div>
 
-    <div
-      class="offcanvas offcanvas-end"
-      tabindex="-1"
-      id="offcanvasRight"
-      aria-labelledby="offcanvasRightLabel"
-    >
-      <button
-        type="button"
-        class="btn-close text-reset m-3"
-        data-bs-dismiss="offcanvas"
-        aria-label="Close"
-      ></button>
+  
 
-      <h3 class="text-center">Menu</h3>
 
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  
+        <button type="button" class="btn-close text-reset m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    
+        <h3 class="text-center"> Menu</h3>
+      
       <div class="offcanvas-body">
+  
+  
+  
         <div class="bg-light m-2 p-2">
           <a href="books.html">
             <i class="fa fa-book" aria-hidden="true"></i>
-
+  
             Books
           </a>
         </div>
-
+    
         <div class="bg-light m-2 p-2">
           <a href="users.html">
             <i class="fa fa-users" aria-hidden="true"></i>
             Users
-          </a>
+  
+          </a>  
         </div>
-
+  
+  
         <div class="bg-light m-2 p-2">
           <a href="issuedbooks.html">
-            <i class="fa fa-exchange" aria-hidden="true"></i>
-            Renew / Return
+            <i class="fa fa-exchange " aria-hidden="true"></i>
+             Renew /   Return
           </a>
         </div>
-
+    
         <div class="bg-light m-2 p-2">
           <a href="issuebook.html">
             <i class="fa fa-leanpub" aria-hidden="true"></i>
             Issue Book
           </a>
         </div>
-
+  
         <div class="bg-light m-2 p-2">
           <a href="category.html">
             <i class="fa fa-plus-circle" aria-hidden="true"></i>
             Add category
           </a>
         </div>
-
+    
         <div class="bg-light m-2 p-2">
           <a href="highlights.html">
             <i class="fa fa-line-chart" aria-hidden="true"></i>
-
+  
             Highest Lent Book
           </a>
         </div>
+    
+    
+       
+  
       </div>
     </div>
 
-    <script src="js/highlights.js"></script>
+   
+
+    <div id="toast">
+      <div id="img"></div>
+      <div id="desc"></div>
+    </div>
+
+
+    <script>
+
+const addCategory = async()=>{
+    let name = document.getElementById("name").value;
+    let shelf = document.getElementById("shelf").value;
+    if(  !name) {
+    document.getElementById('name').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "Category Name is required ");
+  } 
+  if( !shelf) {
+    document.getElementById('shelf').style = 'border: 2px solid red !important';
+    return launch_toast("fail", "Shelf Number is required");
+  }
+
+
+
+  let data = {
+      name,
+      shelf
+  }
+
+  try {
+    await fetch('http://localhost:8080/LibraryManagement/createCategory', {
+      method: 'POST',
+      headers: {
+        'Access-Control-Allow-Origin': "*",
+        'mode': 'no-cors',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(data => {
+         launch_toast("success", "Successfully  Created.");
+      });
+
+  } catch (error) {
+    launch_toast("fail", error)
+  }
+
+
+}
+
+
+
+    </script>
     <script src="js/index.js"></script>
+
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

@@ -82,9 +82,6 @@ let searchUser = async()=>{
 const addUser = async (e) => {
     
     // let bookId = document.getElementById('bookId').value;
-
-
-    
     let membername = document.getElementById('membername').value;
     let email = document.getElementById('email').value;
     let mobile = document.getElementById('mobile').value;
@@ -92,9 +89,9 @@ const addUser = async (e) => {
     let address = document.getElementById('address').value;
 
     
-    if ( !membername) {
+    if ( /[^a-zA-Z0-9\s\_\/]/.test( membername) || !membername) {
         document.getElementById('membername').style = 'border: 2px solid red !important';
-        return launch_toast("fail", "Member Name is required");
+        return launch_toast("fail", "Enter a valid Name");
       }
 
     if(membername.length <= 0 ){
@@ -109,6 +106,9 @@ const addUser = async (e) => {
         return launch_toast("fail", "Enter a valid email Address");
     }
 
+
+    
+
     const regexExpMobile = /^[6-9]\d{9}$/gi;
 
     if(regexExpMobile.test(mobile) && mobile.length === 10) {
@@ -117,6 +117,13 @@ const addUser = async (e) => {
         document.getElementById('mobile').style = 'border: 2px solid red !important';
         return launch_toast("fail", "Enter a valid Mobile Number");
     }
+    if ( /[^a-zA-Z0-9._-\s\/]/.test( address) || !address) {
+      
+      document.getElementById('address').style = 'border: 2px solid red !important';
+
+      return launch_toast("fail", "Enter a valid Address");
+    }
+
 
     let gender;
     if (document.getElementById('option-1').checked) {
@@ -162,6 +169,13 @@ const addUser = async (e) => {
     document.getElementById('email').value = "";
     document.getElementById('address').value = "";
     document.getElementById('dob').value = "";
+
+
+    document.getElementById('membername').style = "";
+    document.getElementById('mobile').style = "";
+    document.getElementById('email').style = "";
+    document.getElementById('address').style = "";
+    document.getElementById('dob').style="";
   
   }
 
