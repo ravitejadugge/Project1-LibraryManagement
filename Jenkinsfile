@@ -1,27 +1,28 @@
 pipeline {
-agent any 
-  stages {
-  stage ("run backend") {
-    steps { 
-    echo 'building the appication backend'
-      withMaven(){
-      sh 'mvn clean install'
-      }
+    agent any
+    tools {
+        maven 'Maven 3.8.6'
+        jdk 'jdk11'
     }
-  }
-  
-  stage ("test") {
-    steps { 
-    echo 'testing the appication'
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+        }
     }
-  }
-  
-   stage ("dep") {
-    steps { 
-    echo 'deploying the appication'
-    }
-  }
-  
-  
-  }
- }
+}
