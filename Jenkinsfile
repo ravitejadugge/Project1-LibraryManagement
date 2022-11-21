@@ -1,9 +1,12 @@
 pipeline {
 agent any 
   stages {
-  stage ("build") {
+  stage ("run backend") {
     steps { 
-    echo 'building the appication'
+    echo 'building the appication backend'
+      withMaven(){
+      sh 'maven clean install'
+      }
     }
   }
   
