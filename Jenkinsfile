@@ -5,7 +5,7 @@ agent any
     steps { 
     echo 'building the appication backend'
       withMaven(){
-      sh 'maven clean install'
+      sh 'mvn clean install'
       }
     }
   }
