@@ -3,21 +3,21 @@ agent any
 stages {
 stage ('Compile Stage') {
 steps {
-withMaven(maven : 'apache-maven-3.6.1') {
-bat'mvn clean compile'
+withMaven(maven : 'apache-maven-3.8.6') {
+sh 'mvn clean compile'
 }
 }
 }
 stage ('Testing Stage') {
 steps {
-withMaven(maven : 'apache-maven-3.6.1') {
-bat'mvn test'
+withMaven(maven : 'apache-maven-3.8.6') {
+run 'mvn test'
 }
 }
 }
 stage ('Install Stage') {
 steps {
-withMaven(maven : 'apache-maven-3.6.1') {
+withMaven(maven : 'apache-maven-3.8.6') {
 bat'mvn install'
 }
 }
